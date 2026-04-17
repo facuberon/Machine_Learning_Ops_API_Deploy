@@ -2,9 +2,8 @@ services:
   - type: web
     name: mlops-api
     runtime: python
-    rootDir: API
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    startCommand: cd API && uvicorn main:app --host 0.0.0.0 --port $PORT
     plan: free
     envVars:
       - key: PYTHON_VERSION
