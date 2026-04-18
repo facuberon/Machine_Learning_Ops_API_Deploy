@@ -219,7 +219,7 @@ services:
     runtime: python
     rootDir: API
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn API.main:app --host 0.0.0.0 --port 10000
     plan: free
 ```
 
