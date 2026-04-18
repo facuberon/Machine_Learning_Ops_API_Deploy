@@ -7,8 +7,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
+import os
+
+# Obtener la ruta absoluta del directorio actual donde está main.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PARQUET_PATH = os.path.join(BASE_DIR, "final.parquet")
+
 # Cargo los datos del Dataset final con la variable df
-df = pd.read_parquet("final.parquet")
+df = pd.read_parquet(PARQUET_PATH)
 #creacion de una aplicacion
 # aumenta el tiempo de espera a 60 segundos para todas las rutas
 app = FastAPI(
@@ -35,7 +41,7 @@ async def root():
 async def get_max_duration(year:int= None, platform: str = None, duration_type: str = None):
     #Esta funcion devuelve el título de la película con la duración máxima.
     #Recibe los parametros year, platform y duration_type (siendo las tres opcionales)
-    df = pd.read_parquet("final.parquet")
+    df = pd.read_parquet(PARQUET_PATH)
       #filtro por parametros 
     if year:
         df = df[df['release_year'] == year]
